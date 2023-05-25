@@ -18,13 +18,21 @@ export default {
             <div class="row g-3">
                 <div class="col col-md-4" v-for="project in data">
                     <div class="card">
+                        <img v-if="project.image" :src="project.image" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ project.name }}</h5>
-                            <p class="card-text">{{ project.description.substring(0, this.length) + '...' }}</p>
-                            <p class="card-text">{{ project.owner }}</p>
-                            <p class="card-text">{{ project.contrinutors }}</p>
-                            <p v-if="project.type" class="card-text">{{ project.type }}</p>
-                            <p v-if="technologies" class="card-text">{{ project.technologies.name }}</p>
+                            <h5 class="card-title">Project name: {{ project.name }}</h5>
+                            <p class="card-text">Project description: {{ project.description.substring(0, this.length) + '...' }}</p>
+                            <p class="card-text">Project owner: {{ project.owner }}</p>
+                            <p class="card-text">Project contributors: {{ project.contributors }}</p>
+                            <div v-if="project.type"> 
+                                <p class=card-text>Type: {{ project.type.type }}</p>
+                            </div>
+                            <div v-if="project.technologies.length>0"> 
+                                <p class=card-text>Technologies:</p>
+                                <ul>
+                                    <li v-for="technologies in project.technologies">{{ technologies.name }}</li>
+                                </ul>
+                            </div>
                             <a href="#" class="btn btn-success">Go Somewhere</a>
                         </div>
                     </div>
