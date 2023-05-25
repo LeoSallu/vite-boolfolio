@@ -25,7 +25,6 @@ export default {
       axios.get(this.api+this.apiUrls.projects)
       .then((response)=>{
         this.projects = response.data.results;
-        
       })
       .catch((error)=>{
         console.log(error);
