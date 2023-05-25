@@ -5,20 +5,23 @@ export default {
 </script>
 
 <template>
-    <nav class="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                Boolfolio
-            </a>
-        </div>
-    </nav>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    Boolfolio
+                </a>
+            </div>
+        </nav>
+    </header>
 </template>
 
 <style lang="scss" scoped>
-.navbar{
+.navbar {
     background-color: #06A77D;
-    div{
-        a{
+
+    div {
+        a {
             color: aliceblue;
         }
     }
