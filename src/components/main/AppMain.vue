@@ -23,8 +23,15 @@ export default {
                             <p class="card-text">{{ project.description.substring(0, this.length) + '...' }}</p>
                             <p class="card-text">{{ project.owner }}</p>
                             <p class="card-text">{{ project.contrinutors }}</p>
-                            <p v-if="project.type" class="card-text">{{ project.type }}</p>
-                            <p v-if="technologies" class="card-text">{{ project.technologies.name }}</p>
+                            <div v-if="project.type"> 
+                                <p class=card-text>Type: {{ project.type.type }}</p>
+                            </div>
+                            <div v-if="project.technologies.length>0"> 
+                                <p class=card-text>Technologies:</p>
+                                <ul>
+                                    <li v-for="technologies in project.technologies">{{ technologies.name }}</li>
+                                </ul>
+                            </div>
                             <a href="#" class="btn btn-success">Go Somewhere</a>
                         </div>
                     </div>
