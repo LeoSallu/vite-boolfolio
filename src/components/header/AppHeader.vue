@@ -1,13 +1,26 @@
 <script>
 export default {
-    name:'AppHeader'
+    name: 'AppHeader'
 }
 </script>
 
 <template>
-    <h1>Header</h1>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                Boolfolio
+            </a>
+        </div>
+    </nav>
 </template>
 
 <style lang="scss" scoped>
-
+.navbar{
+    background-color: #06A77D;
+    div{
+        a{
+            color: aliceblue;
+        }
+    }
+}
 </style>
