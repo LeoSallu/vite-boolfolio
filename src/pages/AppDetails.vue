@@ -32,8 +32,10 @@ export default {
 }
 </script>
 <template>
-    <CardApp :data="projects"/>
+    <main>
+        <CardApp :data="projects" />
+    </main>
 </template>
 
 
-<style scoped></style>
+<style lang="scss" scoped></style>
