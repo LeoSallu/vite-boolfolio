@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: 'AppMain',
+    name: 'CardApp',
     data() {
         return {
             length: 100
