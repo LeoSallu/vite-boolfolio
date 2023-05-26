@@ -1,8 +1,8 @@
 <script>
 import axios from 'axios';
 import AppHeader from './components/header/AppHeader.vue';
-import AppMain from './components/main/AppMain.vue';
 import AppFooter from './components/footer/AppFooter.vue';
+import { router } from './router';
 
 export default {
   name: 'App',
@@ -17,7 +17,6 @@ export default {
   },
   components: {
     AppHeader,
-    AppMain,
     AppFooter
   },
   methods:{
@@ -39,7 +38,7 @@ export default {
 
 <template>
     <AppHeader />
-    <AppMain :data="projects"/>
+    <router-view></router-view>
     <AppFooter />
 </template>
 
