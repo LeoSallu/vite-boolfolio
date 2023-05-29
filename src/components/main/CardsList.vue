@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 export default {
     name: 'CardList',
     data() {
@@ -29,7 +30,9 @@ export default {
                     <li v-for="technologies in project.technologies">{{ technologies.name }}</li>
                 </ul>
             </div>
-            <a href="#" class="btn btn-success">Go Somewhere</a>
+            <router-link :to="{ name: 'project', params: { id: project.id } }" class="btn btn-primary">
+                More Info
+            </router-link>
         </div>
     </div>
 </template>
