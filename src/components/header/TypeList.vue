@@ -33,7 +33,7 @@ export default{
 }
 </script>
 <template>
-    <select class="form-select" @change="changeType" v-model="currentType" v-if="types.length>0">
+    <select class="form-select w-25" @change="changeType" v-model="currentType" v-if="types.length>0">
         <option :value="type.id" v-for="type in types">{{ type.type }}</option>
     </select>
 </template>

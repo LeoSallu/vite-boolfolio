@@ -5,6 +5,7 @@ import AboutUs from './pages/AboutUs.vue';
 import AppDetails from './pages/AppDetails.vue';
 import CardInfo from './pages/CardInfo.vue';
 import TypesPage from './pages/TypesPage.vue';
+import NotFound from './pages/NotFound.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -33,6 +34,11 @@ const router = createRouter({
             path:'/types/:id',
             name:'type',
             component:TypesPage
+        },
+        { 
+            path: '/:pathMatch(.*)*', 
+            name: 'not-found-404',
+            component: NotFound 
         }
     ]
 });

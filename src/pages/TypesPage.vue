@@ -17,9 +17,7 @@ export default {
         getType() {
             axios.get(`${this.store.apiUrl}/types/${this.$route.params.id}`)
                 .then((response) => {
-                    console.log(response);
                     this.type = response.data.results;
-                    console.log(response.data);
 
                 })
         }
@@ -33,13 +31,7 @@ export default {
                 this.getType();
             }
         )
-    },
-    mounted(){
-        console.log('Mounted');
-        console.log(this.type);
-        console.log(this.$route.params.id);
-    }
-}
+    }}
 </script>
 
 
@@ -47,7 +39,6 @@ export default {
     <section v-if="type">
         <div class="container">
             <h1 class="mt-5 mb-3">Type Page: {{ type.type }}</h1>
-            <!-- {{ JSON.stringify(type.projects) }} -->
             <div class="row g-3">
                 <div class="col col-md-4" v-for="project in type.projects">
                     <CardList :project="project" />
