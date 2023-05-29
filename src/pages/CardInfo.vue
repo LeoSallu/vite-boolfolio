@@ -35,24 +35,27 @@ export default {
 </script>
 
 <template>
-    <section v-if="project">
-        <div class="card">
-            <img v-if="project.image" :src="project.image" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Project name: {{ project.name }}</h5>
-                <p class="card-text">Project description: {{ project.description.substring(0, this.length) + '...' }}</p>
-                <p class="card-text">Project owner: {{ project.owner }}</p>
-                <p class="card-text">Project contributors: {{ project.contributors }}</p>
-                <div v-if="project.type">
-                    <p class=card-text>Type: {{ project.type.type }}</p>
+    <section class="p-3" v-if="project">
+        <div class="container">
+            <div class="card">
+                <img v-if="project.image" :src="project.image" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Project name: {{ project.name }}</h5>
+                    <p class="card-text">Project description: {{ project.description.substring(0, this.length) + '...' }}
+                    </p>
+                    <p class="card-text">Project owner: {{ project.owner }}</p>
+                    <p class="card-text">Project contributors: {{ project.contributors }}</p>
+                    <div v-if="project.type">
+                        <p class=card-text>Type: {{ project.type.type }}</p>
+                    </div>
+                    <div v-if="project.technologies.length > 0">
+                        <p class=card-text>Technologies:</p>
+                        <ul>
+                            <li v-for="technologies in project.technologies">{{ technologies.name }}</li>
+                        </ul>
+                    </div>
+                    <router-link :to="{name:'projects'}" class="btn btn-success">Go back to Projects list</router-link>                
                 </div>
-                <div v-if="project.technologies.length > 0">
-                    <p class=card-text>Technologies:</p>
-                    <ul>
-                        <li v-for="technologies in project.technologies">{{ technologies.name }}</li>
-                    </ul>
-                </div>
-                <a href="#" class="btn btn-success">Go Somewhere</a>
             </div>
         </div>
     </section>
@@ -64,8 +67,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-main {
+section {
     background-color: #005379;
+    height: 83vh;
 
 }
 </style>

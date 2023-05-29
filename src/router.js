@@ -4,6 +4,7 @@ import AppHome from './pages/AppHome.vue';
 import AboutUs from './pages/AboutUs.vue';
 import AppDetails from './pages/AppDetails.vue';
 import CardInfo from './pages/CardInfo.vue';
+import TypesPage from './pages/TypesPage.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -27,6 +28,11 @@ const router = createRouter({
             path:'/projects/project-:id',
             name:'project',
             component:CardInfo
+        },
+        {
+            path:'/types/type-:id',
+            name:'type',
+            component:TypesPage
         }
     ]
 });
