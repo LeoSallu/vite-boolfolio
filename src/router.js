@@ -30,7 +30,7 @@ const router = createRouter({
             component:CardInfo
         },
         {
-            path:'/types/type-:id',
+            path:'/types/:id',
             name:'type',
             component:TypesPage
         }

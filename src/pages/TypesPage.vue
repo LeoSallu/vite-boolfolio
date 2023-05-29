@@ -19,6 +19,7 @@ export default {
                 .then((response) => {
                     console.log(response);
                     this.type = response.data.results;
+                    console.log(response.data);
 
                 })
         }
@@ -36,6 +37,7 @@ export default {
     mounted(){
         console.log('Mounted');
         console.log(this.type);
+        console.log(this.$route.params.id);
     }
 }
 </script>
@@ -45,9 +47,9 @@ export default {
     <section v-if="type">
         <div class="container">
             <h1 class="mt-5 mb-3">Type Page: {{ type.type }}</h1>
-
+            <!-- {{ JSON.stringify(type.projects) }} -->
             <div class="row g-3">
-                <div class="col col-md-4" v-for="project in type.project">
+                <div class="col col-md-4" v-for="project in type.projects">
                     <CardList :project="project" />
                 </div>
             </div>
