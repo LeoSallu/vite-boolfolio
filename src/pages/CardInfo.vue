@@ -10,7 +10,11 @@ export default {
             },
             project: null,
             isError: false,
-            errorMessage: null
+            errorMessage: null,
+            formData:{
+                author:'',
+                message:''
+            }
         }
     },
     methods: {
@@ -24,6 +28,22 @@ export default {
                     this.isError = true;
                     this.errorMessage = error.message;
                 })
+        },
+        leadsFn(){
+            const data={
+                author:this.formData.author,
+                message:this.formData.message,
+                project_id:this.project.id
+            };
+            axios.post(`${this.store.apiUrls}/leads`,data)
+            .then((response)=>{
+                if(response.status===201){
+                    this.project.leads.push(response.data)
+                }
+            })
+            .catch((error)=>{
+                console.log(error);
+            });
         }
     },
     created() {
@@ -54,7 +74,16 @@ export default {
                             <li v-for="technologies in project.technologies">{{ technologies.name }}</li>
                         </ul>
                     </div>
-                    <router-link :to="{name:'projects'}" class="btn btn-success">Go back to Projects list</router-link>                
+                    <div v-if="project.leads.length" class="my-3">
+                        <h4>Leads</h4>
+                        <ul>
+                            <li v-for="lead in project.leads">
+                                <p>Author: {{ lead.author ?? 'Anonymus' }}</p>
+                                <p>{{ lead.message }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <router-link :to="{ name: 'projects' }" class="btn btn-success">Go back to Projects list</router-link>
                 </div>
             </div>
         </div>
