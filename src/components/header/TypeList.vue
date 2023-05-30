@@ -15,7 +15,6 @@ export default{
         getTypes() {
             axios.get(`${this.store.apiUrl}/types`)
                 .then((response) => {
-                    console.log(response);
                     this.types = response.data.results;
                 })
                 .catch((error) => {

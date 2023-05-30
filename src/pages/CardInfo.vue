@@ -1,9 +1,11 @@
 <script>
 import axios from 'axios';
+import store from '../store';
 export default {
     name: 'CardInfo',
     data() {
         return {
+            store,
             api: 'http://127.0.0.1:8000/api',
             apiUrls: {
                 projects: '/projects'
@@ -11,13 +13,29 @@ export default {
             project: null,
             isError: false,
             errorMessage: null,
-            formData:{
-                author:'',
-                message:''
+            formData: {
+                author: '',
+                message: ''
             }
         }
     },
     methods: {
+        leadsFn() {
+            const data = {
+                author: this.formData.author,
+                message: this.formData.message,
+                project_id: this.project.id
+            };
+            axios.post(`${this.store.apiUrl}/leads`, data)
+                .then((response) => {
+                    if (response.status === 201) {
+                        this.project.leads.push(response.data)
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
         getProject() {
             axios.get(this.api + this.apiUrls.projects + "/" + this.$route.params.id)
                 .then((response) => {
@@ -28,23 +46,8 @@ export default {
                     this.isError = true;
                     this.errorMessage = error.message;
                 })
-        },
-        leadsFn(){
-            const data={
-                author:this.formData.author,
-                message:this.formData.message,
-                project_id:this.project.id
-            };
-            axios.post(`${this.store.apiUrls}/leads`,data)
-            .then((response)=>{
-                if(response.status===201){
-                    this.project.leads.push(response.data)
-                }
-            })
-            .catch((error)=>{
-                console.log(error);
-            });
         }
+
     },
     created() {
         this.getProject();
@@ -82,6 +85,20 @@ export default {
                                 <p>{{ lead.message }}</p>
                             </li>
                         </ul>
+                    </div>
+                    <div class="my-2">
+                        <h2>New Lead</h2>
+                        <form @sumbit.prevent="leadsFn">
+                            <div class="my-3">
+                                <label for="author" class="form-label">Author</label>
+                                <input type="text" class="form-control" id="author" v-model="formData.author">
+                            </div>
+                            <div class="my-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" v-model="formData.message"></textarea>
+                            </div>
+                            <button class="btn btn-success">Send Lead</button>
+                        </form>
                     </div>
                     <router-link :to="{ name: 'projects' }" class="btn btn-success">Go back to Projects list</router-link>
                 </div>
